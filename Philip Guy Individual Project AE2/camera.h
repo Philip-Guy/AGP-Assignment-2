@@ -19,7 +19,7 @@ private:
 public:
 	// Constructor
 	camera(float x, float y, float z, float rotation);
-
+	~camera();
 	void Rotate(float degrees);
 	void Forward(float distance);
 	void Up(float distance);

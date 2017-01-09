@@ -6,6 +6,16 @@ IDirectInputDevice8* g_keyboard_device;
 
 unsigned char g_keyboard_keys_state[256]; // This will store the state of all keyboard keys
 
+input::~input()
+{
+	{
+		if (g_keyboard_device)
+			g_keyboard_device->Unacquire();
+		g_keyboard_device->Release();
+	}
+
+	if (g_direct_input) g_direct_input->Release();
+}
 										  // Create keyboard device
 HRESULT input::InitialiseInput(HINSTANCE g_hInst, HWND g_hWnd)
 {
@@ -52,17 +62,6 @@ void input::ReadInputStates()
 bool input::IsKeyPressed(unsigned char DI_keycode)
 {
 	return g_keyboard_keys_state[DI_keycode] & 0x80;
-}
-
-void input::Shutdown()
-{
-	{
-		if (g_keyboard_device)
-			g_keyboard_device->Unacquire();
-		g_keyboard_device->Release();
-	}
-
-	if (g_direct_input) g_direct_input->Release();
 }
 
 

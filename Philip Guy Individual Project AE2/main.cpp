@@ -17,6 +17,7 @@ int (WINAPIV * __vsnprintf_)(char *, size_t, const char*, va_list) = _vsnprintf;
 #include "camera.h"
 #include "text2D.h"
 #include "input.h"
+#include "model.h"
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Global Variables
@@ -337,8 +338,6 @@ void ShutdownD3D()
 	if (g_pD3DDevice) g_pD3DDevice->Release();
 	delete Camera;
 	delete g_2DText;
-
-	Keyboard.Shutdown();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
