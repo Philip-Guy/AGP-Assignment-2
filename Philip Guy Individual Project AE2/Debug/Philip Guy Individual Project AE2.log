@@ -1,2 +1,204 @@
-﻿  Philip Guy Individual Project AE2.vcxproj -> F:\University\Year 3\Advanced Games Programming\Working Projects\Philip Guy Individual Project AE2\Debug\Philip Guy Individual Project AE2.exe
-  Philip Guy Individual Project AE2.vcxproj -> F:\University\Year 3\Advanced Games Programming\Working Projects\Philip Guy Individual Project AE2\Debug\Philip Guy Individual Project AE2.pdb (Partial PDB)
+﻿  main.cpp
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(12): warning C4005: 'DXGI_STATUS_OCCLUDED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50092): note: see previous definition of 'DXGI_STATUS_OCCLUDED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(13): warning C4005: 'DXGI_STATUS_CLIPPED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50101): note: see previous definition of 'DXGI_STATUS_CLIPPED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(14): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50110): note: see previous definition of 'DXGI_STATUS_NO_REDIRECTION'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(15): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50119): note: see previous definition of 'DXGI_STATUS_NO_DESKTOP_ACCESS'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(16): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50128): note: see previous definition of 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(17): warning C4005: 'DXGI_STATUS_MODE_CHANGED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50137): note: see previous definition of 'DXGI_STATUS_MODE_CHANGED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(18): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50146): note: see previous definition of 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(21): warning C4005: 'DXGI_ERROR_INVALID_CALL': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50161): note: see previous definition of 'DXGI_ERROR_INVALID_CALL'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(22): warning C4005: 'DXGI_ERROR_NOT_FOUND': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50170): note: see previous definition of 'DXGI_ERROR_NOT_FOUND'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(23): warning C4005: 'DXGI_ERROR_MORE_DATA': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50179): note: see previous definition of 'DXGI_ERROR_MORE_DATA'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(24): warning C4005: 'DXGI_ERROR_UNSUPPORTED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50188): note: see previous definition of 'DXGI_ERROR_UNSUPPORTED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(25): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50197): note: see previous definition of 'DXGI_ERROR_DEVICE_REMOVED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(26): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50206): note: see previous definition of 'DXGI_ERROR_DEVICE_HUNG'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(27): warning C4005: 'DXGI_ERROR_DEVICE_RESET': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50216): note: see previous definition of 'DXGI_ERROR_DEVICE_RESET'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(28): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50225): note: see previous definition of 'DXGI_ERROR_WAS_STILL_DRAWING'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(29): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50235): note: see previous definition of 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(30): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50244): note: see previous definition of 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(31): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50254): note: see previous definition of 'DXGI_ERROR_DRIVER_INTERNAL_ERROR'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(32): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50263): note: see previous definition of 'DXGI_ERROR_NONEXCLUSIVE'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(33): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50272): note: see previous definition of 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(34): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50282): note: see previous definition of 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(35): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50291): note: see previous definition of 'DXGI_ERROR_REMOTE_OUTOFMEMORY'
+f:\university\year 3\advanced games programming\directx\include\d3d11.h(917): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50469): note: see previous definition of 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS'
+f:\university\year 3\advanced games programming\directx\include\d3d11.h(918): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50478): note: see previous definition of 'D3D11_ERROR_FILE_NOT_FOUND'
+f:\university\year 3\advanced games programming\directx\include\d3d11.h(919): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50488): note: see previous definition of 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS'
+f:\university\year 3\advanced games programming\directx\include\d3d11.h(920): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50497): note: see previous definition of 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD'
+f:\university\year 3\advanced games programming\directx\include\d3d10.h(608): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50445): note: see previous definition of 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS'
+f:\university\year 3\advanced games programming\directx\include\d3d10.h(609): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50454): note: see previous definition of 'D3D10_ERROR_FILE_NOT_FOUND'
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2662): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2663): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2664): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2665): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2666): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2667): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2668): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2689): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2690): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2691): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2694): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2695): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2698): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2702): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2712): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2713): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2715): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2716): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2717): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2727): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2728): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2729): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2730): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2731): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2732): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2742): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2743): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2754): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\main.cpp(285): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\main.cpp(286): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\main.cpp(526): warning C4305: 'argument': truncation from 'double' to 'FLOAT'
+  camera.cpp
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(15): error C3646: 'm_position': unknown override specifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(16): error C3646: 'm_lookat': unknown override specifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(17): error C3646: 'm_up': unknown override specifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(17): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(26): error C3646: 'GetViewMatrix': unknown override specifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(26): error C2059: syntax error: '('
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(26): error C2238: unexpected token(s) preceding ';'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(12): warning C4005: 'DXGI_STATUS_OCCLUDED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50092): note: see previous definition of 'DXGI_STATUS_OCCLUDED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(13): warning C4005: 'DXGI_STATUS_CLIPPED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50101): note: see previous definition of 'DXGI_STATUS_CLIPPED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(14): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50110): note: see previous definition of 'DXGI_STATUS_NO_REDIRECTION'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(15): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50119): note: see previous definition of 'DXGI_STATUS_NO_DESKTOP_ACCESS'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(16): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50128): note: see previous definition of 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(17): warning C4005: 'DXGI_STATUS_MODE_CHANGED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50137): note: see previous definition of 'DXGI_STATUS_MODE_CHANGED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(18): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50146): note: see previous definition of 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(21): warning C4005: 'DXGI_ERROR_INVALID_CALL': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50161): note: see previous definition of 'DXGI_ERROR_INVALID_CALL'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(22): warning C4005: 'DXGI_ERROR_NOT_FOUND': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50170): note: see previous definition of 'DXGI_ERROR_NOT_FOUND'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(23): warning C4005: 'DXGI_ERROR_MORE_DATA': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50179): note: see previous definition of 'DXGI_ERROR_MORE_DATA'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(24): warning C4005: 'DXGI_ERROR_UNSUPPORTED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50188): note: see previous definition of 'DXGI_ERROR_UNSUPPORTED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(25): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50197): note: see previous definition of 'DXGI_ERROR_DEVICE_REMOVED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(26): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50206): note: see previous definition of 'DXGI_ERROR_DEVICE_HUNG'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(27): warning C4005: 'DXGI_ERROR_DEVICE_RESET': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50216): note: see previous definition of 'DXGI_ERROR_DEVICE_RESET'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(28): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50225): note: see previous definition of 'DXGI_ERROR_WAS_STILL_DRAWING'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(29): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50235): note: see previous definition of 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(30): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50244): note: see previous definition of 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(31): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50254): note: see previous definition of 'DXGI_ERROR_DRIVER_INTERNAL_ERROR'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(32): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50263): note: see previous definition of 'DXGI_ERROR_NONEXCLUSIVE'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(33): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50272): note: see previous definition of 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(34): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50282): note: see previous definition of 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED'
+f:\university\year 3\advanced games programming\directx\include\dxgitype.h(35): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50291): note: see previous definition of 'DXGI_ERROR_REMOTE_OUTOFMEMORY'
+f:\university\year 3\advanced games programming\directx\include\d3d11.h(917): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50469): note: see previous definition of 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS'
+f:\university\year 3\advanced games programming\directx\include\d3d11.h(918): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50478): note: see previous definition of 'D3D11_ERROR_FILE_NOT_FOUND'
+f:\university\year 3\advanced games programming\directx\include\d3d11.h(919): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50488): note: see previous definition of 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS'
+f:\university\year 3\advanced games programming\directx\include\d3d11.h(920): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50497): note: see previous definition of 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD'
+f:\university\year 3\advanced games programming\directx\include\d3d10.h(608): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50445): note: see previous definition of 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS'
+f:\university\year 3\advanced games programming\directx\include\d3d10.h(609): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': macro redefinition
+  c:\program files (x86)\windows kits\8.1\include\shared\winerror.h(50454): note: see previous definition of 'D3D10_ERROR_FILE_NOT_FOUND'
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2662): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2663): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2664): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2665): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2666): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2667): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2668): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2689): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2690): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2691): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2694): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2695): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2698): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2702): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2712): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2713): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2715): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2716): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2717): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2727): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2728): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2729): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2730): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2731): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2732): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2742): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2743): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\directx\include\xnamath.h(2754): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(41): error C2039: 'GetViewMatrix': is not a member of 'camera'
+  f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.h(5): note: see declaration of 'camera'
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(43): error C2065: 'm_position': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(43): error C2065: 'm_x': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(43): error C2065: 'm_y': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(43): error C2065: 'm_z': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(44): error C2065: 'm_lookat': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(44): error C2065: 'm_x': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(44): error C2065: 'm_dx': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(44): error C2065: 'm_y': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(44): error C2065: 'm_z': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(44): error C2065: 'm_dz': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(44): error C2660: 'XMVectorSet': function does not take 3 arguments
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(45): error C2065: 'm_up': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(47): error C2065: 'm_position': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(47): error C2065: 'm_lookat': undeclared identifier
+f:\university\year 3\advanced games programming\working projects\philip guy individual project ae2\camera.cpp(47): error C2065: 'm_up': undeclared identifier
+  Generating Code...
