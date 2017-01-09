@@ -12,6 +12,9 @@
 #include <stdio.h>
 int (WINAPIV * __vsnprintf_)(char *, size_t, const char*, va_list) = _vsnprintf;
 
+// My classes
+#include "camera.h"
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Global Variables
 //////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +38,9 @@ ID3D11InputLayout*		g_pInputLayout;
 ID3D11DepthStencilView* g_pZBuffer; // Z buffer
 
 float degrees = 0;
+
+// Camera pointer
+camera* Camera;
 
 // Define vertex structure
 struct POS_COL_VERTEX
@@ -106,6 +112,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		else
 		{
+			// Movement of 
+			// Movement of camera
 			RenderFrame();
 		}
 	}
@@ -299,6 +307,7 @@ void ShutdownD3D()
 	if (g_pD3DDevice) g_pD3DDevice->Release();
 
 	if (g_pD3DDevice) g_pD3DDevice->Release();
+	delete Camera;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -453,8 +462,12 @@ HRESULT InitialiseGraphics() //03-01
 		return hr;
 	}
 
-	g_pImmediateContext->IASetInputLayout(g_pInputLayout);
+	// Primary and secondary camera creation
+	camera *mainCamera = new camera(0.0, 0.0, -0.5, 0);
+	camera *secondaryCamera = new camera(0.0, 1.0, 0, 0);
 
+	g_pImmediateContext->IASetInputLayout(g_pInputLayout);
+	
 	return S_OK;
 }
 
@@ -470,9 +483,9 @@ void RenderFrame(void)
 
 	// RENDER HERE
 	// Set vertex buffer //03-01
-	//UINT stride = sizeof(POS_COL_VERTEX);
-	//UINT offset = 0;
-	//g_pImmediateContext->IASetVertexBuffers(0, 1, &g_pVertexBuffer, &stride, &offset);
+	UINT stride = sizeof(POS_COL_VERTEX);
+	UINT offset = 0;
+	g_pImmediateContext->IASetVertexBuffers(0, 1, &g_pVertexBuffer, &stride, &offset);
 
 	// Constant Buffers
 	CONSTANT_BUFFER0 cb0_values;
@@ -482,10 +495,11 @@ void RenderFrame(void)
 	// Set the constant buffer to be active
 	g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
 
+	// Set view matrix before  creating WorldViewMatrix
+	Camera->GetViewMatrix();
+
 	// World, view, projection transformations
 	XMMATRIX projection, world, view;
-	// TODO: degrees varies based on keypress!!!
-
 	// Matrix concatenation + backface culling
 	world = XMMatrixRotationX(XMConvertToRadians(degrees));
 	world *= XMMatrixTranslation(2, 0, 5);
@@ -493,6 +507,8 @@ void RenderFrame(void)
 	view = XMMatrixIdentity();
 	cb0_values.WorldViewProjection = world * view * projection;
 
+	// TODO: degrees varies based on keypress!!!
+	// TODO: camera varies based on keypress!!!
 
 	// Select which primitive type to use //03-01
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
