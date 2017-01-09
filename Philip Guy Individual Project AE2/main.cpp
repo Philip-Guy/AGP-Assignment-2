@@ -1,3 +1,5 @@
+//#pragma warning(disable:4996)  
+
 #include <windows.h>
 #include <d3d11.h>
 #include <d3dx11.h>
@@ -6,22 +8,24 @@
 #define _XM_NO_INTRINSICS_
 #define XM_NO_ALIGNMENT
 #include <xnamath.h>
+
 #include <stdio.h>
-int (WINAPIV * __vsnprintf)(char *, size_t, const char*, va_list) = _vsnprintf;
+int (WINAPIV * __vsnprintf_)(char *, size_t, const char*, va_list) = _vsnprintf;
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Global Variables
 //////////////////////////////////////////////////////////////////////////////////////
 HINSTANCE g_hInst = NULL;
 HWND g_hWnd = NULL;
-// Rename for each tutorial
-char g_TutorialName[100] = "Philip Guy - Individual Project AE2\0";
+
+char g_TutorialName[100] = "Philip Guy Individual Project AE2\0";
 
 D3D_DRIVER_TYPE g_driverType = D3D_DRIVER_TYPE_NULL;
 D3D_FEATURE_LEVEL g_featureLevel = D3D_FEATURE_LEVEL_11_0;
 ID3D11Device* g_pD3DDevice = NULL;
 ID3D11DeviceContext* g_pImmediateContext = NULL;
-IDXGISwapChain* g_pSwapChain = NULL;
+IDXGISwapChain* g_pSwapChain = NULL;
+
 ID3D11RenderTargetView* g_pBackBufferRTView = NULL;
 
 ID3D11Buffer*			g_pVertexBuffer;
@@ -35,13 +39,25 @@ struct POS_COL_VERTEX
 	XMFLOAT3 Pos;
 	XMFLOAT4 Col;
 };
+
+// Const buffer structs. Pack to 16 bytes. Don't let any single element cross a 16 byte boundary
+struct CONSTANT_BUFFER0
+{
+	float RedAmount; // 4 bytes
+	XMFLOAT3 packing_bytes; // 3x4 bytes = 12 bytes
+};
+
+ID3D11Buffer*	g_pConstantBuffer0;
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Forward declarations
 //////////////////////////////////////////////////////////////////////////////////////
 HRESULT InitialiseWindow(HINSTANCE hInstance, int nCmdShow);
-LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
 HRESULT InitialiseD3D();
-void ShutdownD3D();
+void ShutdownD3D();
+
 void RenderFrame(void);
 
 HRESULT InitialiseGraphics(void);
@@ -65,7 +81,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		DXTRACE_MSG("Failed to create Device");
 		return 0;
-	}	if (FAILED(InitialiseGraphics()))	{		DXTRACE_MSG("Failed to initialise graphics");		return 0;	}
+	}
+
+	if (FAILED(InitialiseGraphics()))
+	{
+		DXTRACE_MSG("Failed to initialise graphics");
+		return 0;
+	}
+
 	// Main message loop
 	MSG msg = { 0 };
 	while (msg.message != WM_QUIT)
@@ -81,7 +104,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 	}
 	ShutdownD3D();
-	return (int)msg.wParam;
+	return (int)msg.wParam;
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -90,7 +114,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 HRESULT InitialiseWindow(HINSTANCE hInstance, int nCmdShow)
 {
 	// Give your app window your own name
-	char Name[100] = "Philip Guy\0";
+	char Name[100] = "Hello World\0";
 	// Register class
 	WNDCLASSEX wcex = { 0 };
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -216,7 +240,8 @@ HRESULT InitialiseD3D()
 	viewport.Height = height;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
-	g_pImmediateContext->RSSetViewports(1, &viewport);
+	g_pImmediateContext->RSSetViewports(1, &viewport);
+
 	return S_OK;
 }
 
@@ -225,6 +250,8 @@ HRESULT InitialiseD3D()
 //////////////////////////////////////////////////////////////////////////////////////
 void ShutdownD3D()
 {
+	if (g_pConstantBuffer0) g_pConstantBuffer0->Release();
+
 	if (g_pVertexBuffer) g_pVertexBuffer->Release(); //03-01
 	if (g_pInputLayout) g_pInputLayout->Release(); //03-01
 	if (g_pVertexShader) g_pVertexShader->Release(); //03-01
@@ -253,13 +280,21 @@ HRESULT InitialiseGraphics() //03-01
 	};
 
 	// Set up and create vertex buffer
-	D3D11_BUFFER_DESC bufferDesc;
-	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
-	bufferDesc.Usage = D3D11_USAGE_DYNAMIC;				// Used by CPU and GPU
-	bufferDesc.ByteWidth = sizeof(POS_COL_VERTEX) * 3;	// Total size of buffer, 3 vertices
-	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// Use as a vertex buffer
-	bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;	// Allow CPU access
-	hr = g_pD3DDevice->CreateBuffer(&bufferDesc, NULL, &g_pVertexBuffer); // Create the buffer
+	//D3D11_BUFFER_DESC bufferDesc;
+	//ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+	//bufferDesc.Usage = D3D11_USAGE_DYNAMIC;				// Used by CPU and GPU
+	//bufferDesc.ByteWidth = sizeof(POS_COL_VERTEX) * 3;	// Total size of buffer, 3 vertices
+	//bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// Use as a vertex buffer
+	//bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;	// Allow CPU access
+	//hr = g_pD3DDevice->CreateBuffer(&bufferDesc, NULL, &g_pVertexBuffer); // Create the buffer
+
+	// Set up and create constant buffer
+	D3D11_BUFFER_DESC constant_buffer_desc;
+	ZeroMemory(&constant_buffer_desc, sizeof(constant_buffer_desc));
+	constant_buffer_desc.Usage = D3D11_USAGE_DEFAULT; // Can use UpdateSubresource() to update
+	constant_buffer_desc.ByteWidth = 16; // MUST be a multiple of 16, calculate from CB struct
+	constant_buffer_desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // Use as a constant buffer
+	hr = g_pD3DDevice->CreateBuffer(&constant_buffer_desc, NULL, &g_pConstantBuffer0);
 
 	if (FAILED(hr)) // return error code on failure
 	{
@@ -352,9 +387,18 @@ void RenderFrame(void)
 
 	// RENDER HERE
 	// Set vertex buffer //03-01
-	UINT stride = sizeof(POS_COL_VERTEX);
-	UINT offset = 0;
-	g_pImmediateContext->IASetVertexBuffers(0, 1, &g_pVertexBuffer, &stride, &offset);
+	//UINT stride = sizeof(POS_COL_VERTEX);
+	//UINT offset = 0;
+	//g_pImmediateContext->IASetVertexBuffers(0, 1, &g_pVertexBuffer, &stride, &offset);
+
+	// Constant Buffers
+	CONSTANT_BUFFER0 cb0_values;
+	cb0_values.RedAmount = 0.5f; // 50% of vertex red value
+								 // Upload the new values for the constant buffer
+	g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
+	// Set the constant buffer to be active
+	g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
+
 
 	// Select which primitive type to use //03-01
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -365,4 +409,4 @@ void RenderFrame(void)
 
 	// Display what has just been rendered
 	g_pSwapChain->Present(0, 0);
-}
+}
