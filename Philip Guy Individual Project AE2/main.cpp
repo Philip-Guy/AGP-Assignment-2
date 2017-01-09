@@ -4,6 +4,7 @@
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <dxerr.h>
+#include <dinput.h>
 
 #define _XM_NO_INTRINSICS_
 #define XM_NO_ALIGNMENT
@@ -15,6 +16,7 @@ int (WINAPIV * __vsnprintf_)(char *, size_t, const char*, va_list) = _vsnprintf;
 // My classes
 #include "camera.h"
 #include "text2D.h"
+#include "input.h"
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Global Variables
@@ -45,6 +47,9 @@ Text2D* g_2DText;
 // Camera pointer
 camera* Camera;
 float degrees = 0;
+
+// keyboard
+input Keyboard;
 
 // Ambient and Directional Lighting
 XMVECTOR g_directional_light_shines_from;
@@ -97,6 +102,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	if (FAILED(InitialiseWindow(hInstance, nCmdShow)))
 	{
 		DXTRACE_MSG("Failed to create Window");
+		return 0;
+	}
+	
+	if (FAILED(Keyboard.InitialiseInput(g_hInst, g_hWnd)))
+	{
+		DXTRACE_MSG("Failed to initialise keyboard");
 		return 0;
 	}
 
@@ -179,10 +190,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
-	case WM_KEYDOWN:
+	/*case WM_KEYDOWN:
 		if (wParam == VK_ESCAPE)
 			DestroyWindow(g_hWnd);
-		return 0;
+		return 0;*/
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
@@ -326,6 +337,8 @@ void ShutdownD3D()
 	if (g_pD3DDevice) g_pD3DDevice->Release();
 	delete Camera;
 	delete g_2DText;
+
+	Keyboard.Shutdown();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -507,6 +520,16 @@ HRESULT InitialiseGraphics() //03-01
 // Render frame
 void RenderFrame(void)
 {
+	// User Controls
+	Keyboard.ReadInputStates();
+	if (Keyboard.IsKeyPressed(DIK_ESCAPE)) DestroyWindow(g_hWnd); // Exit game
+	if (Keyboard.IsKeyPressed(DIK_UP)) Camera->Forward(0.2f); // Forward
+	if (Keyboard.IsKeyPressed(DIK_DOWN)) Camera->Forward(-0.2f); // Backwards
+	if (Keyboard.IsKeyPressed(DIK_LEFT)) Camera->Rotate(2.0f); // Look left
+	if (Keyboard.IsKeyPressed(DIK_RIGHT)) Camera->Rotate(2.0f); // Look right
+	if (Keyboard.IsKeyPressed(DIK_SPACE)) Camera->Up(1.0f); // Jump
+	Camera->Up(-1.0f); // Gravity, keeps the player on the ground if not jumping
+	
 	// Clear the back buffer - choose a colour you like
 	float rgba_clear_colour[4] = { 0.1f, 0.2f, 0.6f, 1.0f };
 	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, rgba_clear_colour);
