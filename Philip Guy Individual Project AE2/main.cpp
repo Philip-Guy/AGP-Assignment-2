@@ -28,10 +28,13 @@ IDXGISwapChain* g_pSwapChain = NULL;
 
 ID3D11RenderTargetView* g_pBackBufferRTView = NULL;
 
-ID3D11Buffer*			g_pVertexBuffer;
-ID3D11VertexShader*		g_pVertexShader;
-ID3D11PixelShader*		g_pPixelShader;
+ID3D11Buffer*			g_pVertexBuffer; // Vertex buffer
+ID3D11VertexShader*		g_pVertexShader; // Vertex shader
+ID3D11PixelShader*		g_pPixelShader; // Pixel Shader
 ID3D11InputLayout*		g_pInputLayout;
+ID3D11DepthStencilView* g_pZBuffer; // Z buffer
+
+float degrees = 0;
 
 // Define vertex structure
 struct POS_COL_VERTEX
@@ -43,8 +46,11 @@ struct POS_COL_VERTEX
 // Const buffer structs. Pack to 16 bytes. Don't let any single element cross a 16 byte boundary
 struct CONSTANT_BUFFER0
 {
-	float RedAmount; // 4 bytes
-	XMFLOAT3 packing_bytes; // 3x4 bytes = 12 bytes
+	XMMATRIX WorldViewProjection;	// 64 bytes ( Must be a multiple of 16)
+	float RedAmount;				// 4 bytes
+	float scale;					// 4 bytes
+	XMFLOAT2 packing;				// 8 bytes
+	// Total size = 80 bytes
 };
 
 ID3D11Buffer*	g_pConstantBuffer0;
@@ -230,8 +236,37 @@ HRESULT InitialiseD3D()
 		&g_pBackBufferRTView);
 	pBackBufferTexture->Release();
 	if (FAILED(hr)) return hr;
+
+	// Ceate a Z buffer texture
+	D3D11_TEXTURE2D_DESC tex2dDesc;
+	ZeroMemory(&tex2dDesc, sizeof(tex2dDesc));
+
+	tex2dDesc.Width = width;
+	tex2dDesc.Height = height;
+	tex2dDesc.ArraySize = 1;
+	tex2dDesc.MipLevels = 1;
+	tex2dDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	tex2dDesc.SampleDesc.Count = sd.SampleDesc.Count;
+	tex2dDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	tex2dDesc.Usage = D3D11_USAGE_DEFAULT;
+
+	ID3D11Texture2D *pZBufferTexture;
+	hr = g_pD3DDevice->CreateTexture2D(&tex2dDesc, NULL, &pZBufferTexture);
+
+	if (FAILED(hr)) return hr;
+
+	// Create the Z buffer
+	D3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc;
+	ZeroMemory(&dsvDesc, sizeof(dsvDesc));
+
+	dsvDesc.Format = tex2dDesc.Format;
+	dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+
+	g_pD3DDevice->CreateDepthStencilView(pZBufferTexture, &dsvDesc, &g_pZBuffer);
+	pZBufferTexture->Release();
+
 	// Set the render target view
-	g_pImmediateContext->OMSetRenderTargets(1, &g_pBackBufferRTView, NULL);
+	g_pImmediateContext->OMSetRenderTargets(1, &g_pBackBufferRTView, g_pZBuffer);
 	// Set the viewport
 	D3D11_VIEWPORT viewport;
 	viewport.TopLeftX = 0;
@@ -262,6 +297,8 @@ void ShutdownD3D()
 	if (g_pSwapChain) g_pSwapChain->Release();
 	if (g_pImmediateContext) g_pImmediateContext->Release();
 	if (g_pD3DDevice) g_pD3DDevice->Release();
+
+	if (g_pD3DDevice) g_pD3DDevice->Release();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -271,28 +308,72 @@ HRESULT InitialiseGraphics() //03-01
 {
 	HRESULT hr = S_OK;
 
-	// Define vertices of a triangle - screen coordinates -1.0 to +1.0
+	// Define vertices of a cube - screen coordinates -1.0 to +1.0
 	POS_COL_VERTEX vertices[] =
 	{
-		{ XMFLOAT3(0.9f, 0.9f, 0.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
-		{ XMFLOAT3(0.9f, -0.9f, 0.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
-		{ XMFLOAT3(-0.9f, -0.9f, 0.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) }
+		// back face
+		{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+
+		// front face
+		{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+	
+		// left face
+		{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+
+		// right face
+		{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+
+		// bottom face
+		{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+
+		// top face
+		{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) }
 	};
 
 	// Set up and create vertex buffer
-	//D3D11_BUFFER_DESC bufferDesc;
-	//ZeroMemory(&bufferDesc, sizeof(bufferDesc));
-	//bufferDesc.Usage = D3D11_USAGE_DYNAMIC;				// Used by CPU and GPU
-	//bufferDesc.ByteWidth = sizeof(POS_COL_VERTEX) * 3;	// Total size of buffer, 3 vertices
-	//bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// Use as a vertex buffer
-	//bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;	// Allow CPU access
-	//hr = g_pD3DDevice->CreateBuffer(&bufferDesc, NULL, &g_pVertexBuffer); // Create the buffer
+	D3D11_BUFFER_DESC bufferDesc;
+	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+	bufferDesc.Usage = D3D11_USAGE_DYNAMIC;				// Used by CPU and GPU
+	bufferDesc.ByteWidth = sizeof(vertices);			// Total size of buffer
+	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// Use as a vertex buffer
+	bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;	// Allow CPU access
+	hr = g_pD3DDevice->CreateBuffer(&bufferDesc, NULL, &g_pVertexBuffer); // Create the buffer
 
 	// Set up and create constant buffer
 	D3D11_BUFFER_DESC constant_buffer_desc;
 	ZeroMemory(&constant_buffer_desc, sizeof(constant_buffer_desc));
 	constant_buffer_desc.Usage = D3D11_USAGE_DEFAULT; // Can use UpdateSubresource() to update
-	constant_buffer_desc.ByteWidth = 16; // MUST be a multiple of 16, calculate from CB struct
+	constant_buffer_desc.ByteWidth = 80; // MUST be a multiple of 16, calculate from CB struct
 	constant_buffer_desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // Use as a constant buffer
 	hr = g_pD3DDevice->CreateBuffer(&constant_buffer_desc, NULL, &g_pConstantBuffer0);
 
@@ -384,6 +465,8 @@ void RenderFrame(void)
 	float rgba_clear_colour[4] = { 0.1f, 0.2f, 0.6f, 1.0f };
 	g_pImmediateContext->ClearRenderTargetView(g_pBackBufferRTView, rgba_clear_colour);
 
+	// Clear the Z buffer
+	g_pImmediateContext->ClearDepthStencilView(g_pZBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 	// RENDER HERE
 	// Set vertex buffer //03-01
@@ -394,19 +477,27 @@ void RenderFrame(void)
 	// Constant Buffers
 	CONSTANT_BUFFER0 cb0_values;
 	cb0_values.RedAmount = 0.5f; // 50% of vertex red value
-								 // Upload the new values for the constant buffer
+	// Upload the new values for the constant buffer
 	g_pImmediateContext->UpdateSubresource(g_pConstantBuffer0, 0, 0, &cb0_values, 0, 0);
 	// Set the constant buffer to be active
 	g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer0);
 
+	// World, view, projection transformations
+	XMMATRIX projection, world, view;
+	// TODO: degrees varies based on keypress!!!
+
+	// Matrix concatenation + backface culling
+	world = XMMatrixRotationX(XMConvertToRadians(degrees));
+	world *= XMMatrixTranslation(2, 0, 5);
+	projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(45.0), 640.0 / 480.0, 1.0, 100.0);
+	view = XMMatrixIdentity();
+	cb0_values.WorldViewProjection = world * view * projection;
+
 
 	// Select which primitive type to use //03-01
 	g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
 	// Draw the vertex buffer to the back buffer
-	g_pImmediateContext->Draw(3, 0);
-
-
+	g_pImmediateContext->Draw(36, 0);
 	// Display what has just been rendered
 	g_pSwapChain->Present(0, 0);
 }
